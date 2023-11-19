@@ -35,12 +35,7 @@ const Ideas = ({props}:any) => {
         {props.map((idea:any) => (
           idea.status === "new" && 
           <div key={idea.id} className="flex items-center">
-            <form action={deleteIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
-                Delete
-              </button>
-            </form>
+            <DeleteButton idea={idea} />
             <div className="border-black border-[1px] rounded-md my-2">
               <div className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold flex justify-between">
                 {idea.name}
@@ -52,13 +47,7 @@ const Ideas = ({props}:any) => {
                 })}
               </p>
             </div>
-            <form action={progressIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <input type="hidden" name="status" value="new" />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
-                Start Working
-              </button>
-            </form>
+            <ProgressIdeaButton idea={idea} />
           </div>
         ))}
       </CardContent>
@@ -80,12 +69,7 @@ const InProgress = ({props}:any) => {
       {props.map((idea:any) => (
           idea.status === "in-progress" && 
           <div key={idea.id} className="flex items-center">
-            <form action={deleteIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
-                Delete
-              </button>
-            </form>
+            <DeleteButton idea={idea} />
             <div className="border-black border-[1px] rounded-md my-2">
               <div className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold flex justify-between">
                 {idea.name}
@@ -97,13 +81,7 @@ const InProgress = ({props}:any) => {
                 })}
               </p>
             </div>
-            <form action={progressIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <input type="hidden" name="status" value="new" />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2 w-full">
-                Finish Working
-              </button>
-            </form>
+            <ProgressIdeaButton idea={idea} />
           </div>
         ))}
       </CardContent>
@@ -125,12 +103,7 @@ const Done = ({props}:any) => {
         {props.map((idea:any) => (
           idea.status === "done" && 
           <div key={idea.id} className="flex items-center">
-            <form action={deleteIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
-                Delete
-              </button>
-            </form>
+            <DeleteButton idea={idea} />
             <div className="border-black border-[1px] rounded-md my-2">
               <div className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold flex justify-between">
                 {idea.name}
@@ -142,13 +115,7 @@ const Done = ({props}:any) => {
                 })}
               </p>
             </div>
-            <form action={progressIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <input type="hidden" name="status" value="new" />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
-                Abandon this
-              </button>
-            </form>
+            <ProgressIdeaButton idea={idea} />
           </div>
         ))}
       </CardContent>
@@ -170,12 +137,7 @@ const Abandoned = ({props}:any) => {
         {props.map((idea:any) => (
           idea.status === "abandoned" && 
           <div key={idea.id} className="flex items-center">
-            <form action={deleteIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
-                Delete
-              </button>
-            </form>
+            <DeleteButton idea={idea} />
             <div className="border-black border-[1px] rounded-md my-2">
               <div className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold flex justify-between">
                 {idea.name}
@@ -187,13 +149,7 @@ const Abandoned = ({props}:any) => {
                 })}
               </p>
             </div>
-            <form action={progressIdea}>
-              <input type="hidden" name="id" value={idea.id} />
-              <input type="hidden" name="status" value="new" />
-              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
-                Restart This
-              </button>
-            </form>
+            <ProgressIdeaButton idea={idea} />
           </div>
         ))}
       </CardContent>
@@ -201,5 +157,28 @@ const Abandoned = ({props}:any) => {
         <p>Card Footer</p>
       </CardFooter>
     </Card>
+  )
+}
+
+const DeleteButton = ({idea}:any) => {
+  return (
+    <form action={deleteIdea}>
+      <input type="hidden" name="id" value={idea.id} />
+      <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2 hover:bg-red-400 hover:text-white">
+        Delete
+      </button>
+    </form>
+  )
+}
+
+const ProgressIdeaButton = ({idea}:any) => {
+  return (
+    <form action={progressIdea}>
+      <input type="hidden" name="id" value={idea.id} />
+      <input type="hidden" name="status" value="new" />
+      <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
+        -{'>'}
+      </button>
+    </form>
   )
 }
