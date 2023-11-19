@@ -37,7 +37,6 @@ const Ideas = ({props}:any) => {
           <div key={idea.id} className="flex items-center">
             <form action={deleteIdea}>
               <input type="hidden" name="id" value={idea.id} />
-              <input type="hidden" name="status" value="new" />
               <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
                 Delete
               </button>
@@ -81,8 +80,17 @@ const InProgress = ({props}:any) => {
       {props.map((idea:any) => (
           idea.status === "in-progress" && 
           <div key={idea.id} className="flex items-center">
+            <form action={deleteIdea}>
+              <input type="hidden" name="id" value={idea.id} />
+              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
+                Delete
+              </button>
+            </form>
             <div className="border-black border-[1px] rounded-md my-2">
-              <p className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold">{idea.name}</p>
+              <div className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold flex justify-between">
+                {idea.name}
+                <UpdateIdeaForm idea={idea} />
+              </div>
               <p>
                 {idea.description.split('\n').map((x:any) => {
                   return <>{x}<br/></>
@@ -117,8 +125,17 @@ const Done = ({props}:any) => {
         {props.map((idea:any) => (
           idea.status === "done" && 
           <div key={idea.id} className="flex items-center">
+            <form action={deleteIdea}>
+              <input type="hidden" name="id" value={idea.id} />
+              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
+                Delete
+              </button>
+            </form>
             <div className="border-black border-[1px] rounded-md my-2">
-              <p className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold">{idea.name}</p>
+              <div className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold flex justify-between">
+                {idea.name}
+                <UpdateIdeaForm idea={idea} />
+              </div>
               <p>
                 {idea.description.split('\n').map((x:any) => {
                   return <>{x}<br/></>
@@ -153,8 +170,17 @@ const Abandoned = ({props}:any) => {
         {props.map((idea:any) => (
           idea.status === "abandoned" && 
           <div key={idea.id} className="flex items-center">
+            <form action={deleteIdea}>
+              <input type="hidden" name="id" value={idea.id} />
+              <button type="submit" className="text-xs border-black border-[1px] rounded-md m-2">
+                Delete
+              </button>
+            </form>
             <div className="border-black border-[1px] rounded-md my-2">
-              <p className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold">{idea.name}</p>
+              <div className="bg-slate-100 rounded-tl-md rounded-tr-md border-[1px] border-b-black font-bold flex justify-between">
+                {idea.name}
+                <UpdateIdeaForm idea={idea} />
+              </div>
               <p>
                 {idea.description.split('\n').map((x:any) => {
                   return <>{x}<br/></>
